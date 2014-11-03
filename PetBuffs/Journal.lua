@@ -71,6 +71,7 @@ end
 function Journal:Update()
     if self.PetModel:IsShown() then
         self.PetModel:Display(self.List.selected)
+        -- TODO: cam scale and rotation are model specific (see Raptor / Rylak / Silithid)
     end
 end
 
