@@ -77,26 +77,40 @@ function PetBuffs:OnInitialize()
 
     self.options.args.profile = AceDBOptions:GetOptionsTable(self.db)
 
-    AceConfig:RegisterOptionsTable(ADDON_NAME, self.options, 'petbuffs')
+    AceConfig:RegisterOptionsTable(ADDON_NAME, self.options)
 
     self.optionsFrames = {}
     self.optionsFrames.general = AceConfigDialog:AddToBlizOptions(ADDON_NAME, nil, nil, 'general')
     self.optionsFrames.profile = AceConfigDialog:AddToBlizOptions(ADDON_NAME, 'Profiles', ADDON_NAME, 'profile')
 
-    self:RegisterChatCommand('pbtest', 'SlashPetBuffs')
+    self:RegisterChatCommand('petbuffs', 'SlashPetBuffs')
 end
 
 function PetBuffs:OnProfileChanged(event, database, newProfileKey)
     profileDB = database.profile
 end
 
+function PetBuffs:Open()
+    if not PetJournalParent:IsShown() then
+        TogglePetJournal()
+    end
+    for i = 1, PetJournalParent.numTabs do
+        local tab = _G['PetJournalParentTab' .. i]
+        if tab:GetText() == ADDON_NAME then
+            PanelTemplates_SetTab(PetJournalParent, i)
+        end
+    end
+end
+
 function PetBuffs:OpenConfig()
     InterfaceOptionsFrame_OpenToCategory(self.optionsFrames.general)
     InterfaceOptionsFrame_OpenToCategory(self.optionsFrames.general)
+    -- first one only opens the "Game" tab, second one opens the "Add-ons" tab
 end
 
 function PetBuffs:SlashPetBuffs(input)
     self:Print(profileDB.msg)
+    PetBuffs:Open()
 end
 
 -----------------------------------------------------------------
@@ -110,15 +124,7 @@ PetBuffs.obj = ldb:NewDataObject(ADDON_NAME, {
     icon = 'Interface\\Icons\\Ability_Hunter_MendPet',
     OnClick = function(frame, msg)
         if msg == 'LeftButton' then
-            if not PetJournalParent:IsShown() then
-                TogglePetJournal()
-            end
-            for i = 1, PetJournalParent.numTabs do
-                local tab = _G['PetJournalParentTab' .. i]
-                if tab:GetText() == ADDON_NAME then
-                    PanelTemplates_SetTab(PetJournalParent, i)
-                end
-            end
+            PetBuffs:Open()
         elseif msg == 'RightButton' then
             PetBuffs:OpenConfig()
         end
