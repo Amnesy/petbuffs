@@ -55,8 +55,8 @@ function Journal.List:update()
         if pet then
             button.name:SetText(pet.name)
             button.icon:SetTexture('Interface\\Icons\\' .. pet.icon)
-            button.favorite:Hide();
-            button.selected = false;
+            button.favorite:Hide()
+            button.selected = false
             button.selectedTexture:SetShown(self.selected and pet.id == self.selected.id)
             button.DragButton.ActiveTexture:Hide()
         end
@@ -76,8 +76,6 @@ end
 
 function Journal.PetModel:Display(pet)
     self.model:SetDisplayInfo(pet.model)
-    self.model:SetDoBlend(false);
-    self.model:SetRotation(-.9)
 end
 
 -----------------------------------------------------------------

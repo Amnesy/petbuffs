@@ -114,7 +114,7 @@ PetBuffs.obj = ldb:NewDataObject(ADDON_NAME, {
                 TogglePetJournal()
             end
             for i = 1, PetJournalParent.numTabs do
-                local tab = _G['PetJournalParentTab' .. i];
+                local tab = _G['PetJournalParentTab' .. i]
                 if tab:GetText() == ADDON_NAME then
                     PanelTemplates_SetTab(PetJournalParent, i)
                 end
