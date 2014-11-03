@@ -25,6 +25,9 @@ function Journal:Startup()
     self.List.scrollBar.doNotHide = true
     self.SearchBox:SetText('')
     self.SearchBox:SetScript('OnTextChanged', self.Search)
+
+    local pets = PetBuffs.Pet.GetFilteredSortedList(nil, 'name')
+    self:SetPet(pets[1])
 end
 
 function Journal:SetPet(pet)
@@ -43,17 +46,8 @@ end
 function Journal.List:update()
     local self = Journal.List
     local off = HybridScrollFrame_GetOffset(self)
-    local pets = {}
 
-    for i, pet in pairs(PetBuffs.Pets) do
-        -- PetBuffs:Print(type(pet))
-        -- PetBuffs:Print(i)
-        -- local pet = PetBuffs.Pet:Get(i)
-        -- if Addon:Filter(tamer, Addon.Sets.TamerSearch) then
-            tinsert(pets, pet)
-        -- end
-    end
-    table.sort(pets, PetBuffs.Pet.CompareByName)
+    local pets = PetBuffs.Pet.GetFilteredSortedList(nil, 'name')
 
     for i, button in ipairs(self.buttons) do
         local pet = pets[i + off]

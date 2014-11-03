@@ -32,6 +32,27 @@ PetBuffs.Pet.__index = PetBuffs.Pet
 --     end
 -- end
 
+function PetBuffs.Pet.GetFilteredSortedList(filter, order)
+    local pets = {}
+    local filter_function = PetBuffs.Pet.FilterFunctions[filter]
+    local order_function = PetBuffs.Pet.OrderFunctions[order]
+
+    for _, pet in pairs(PetBuffs.Pets) do
+        if filter_function == nil or filter_function(pet) then
+            tinsert(pets, pet)
+        end
+    end
+    table.sort(pets, order_function)
+
+    return pets
+end
+
 function PetBuffs.Pet.CompareByName(pet1, pet2)
     return string.lower(pet1.name) < string.lower(pet2.name)
 end
+
+PetBuffs.Pet.FilterFunctions = { }
+
+PetBuffs.Pet.OrderFunctions = {
+    name = PetBuffs.Pet.CompareByName
+}
