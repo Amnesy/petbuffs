@@ -1,0 +1,18 @@
+## Interface: 60000
+## Title: PetBuffs
+## Notes: Hunter pet buffs.
+## Author: Amnesy
+## Version: 1.0.0
+
+## Dependencies: Blizzard_PetJournal
+## SavedVariables: PetBuffsDB
+
+embeds.xml
+
+locales.xml
+ui.xml
+
+PetBuffs.lua
+Data.lua
+Pet.lua
+Journal.lua

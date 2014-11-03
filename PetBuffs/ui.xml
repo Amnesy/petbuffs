@@ -1,0 +1,77 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+  <!-- Button Templates -->
+  <Button name="PetBuffsEntry" inherits="MountListButtonTemplate" virtual="true">
+    <Scripts>
+      <OnClick>
+        PetBuffsJournal:SetPet(self.pet)
+      </OnClick>
+    </Scripts>
+  </Button>
+
+  <!-- Frame -->
+  <Frame name="PetBuffsJournal" parent="PetJournalParent" setAllPoints="true" hidden="true">
+    <Frames>
+      <Frame name="$parentListInset" useParentLevel="true" inherits="InsetFrameTemplate" parentKey="ListInset">
+        <Size x="260" y="496"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" x="4" y="-60" />
+          <Anchor point="BOTTOMLEFT" x="4" y="26" />
+        </Anchors>
+      </Frame>
+
+      <EditBox name="$parentSearchBox" inherits="SearchBoxTemplate" parentKey="SearchBox" letters="50">
+        <Size x="237" y="20"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="$parentListInset" x="15" y="-9"/>
+        </Anchors>
+      </EditBox>
+
+      <ScrollFrame name="$parentList" parentKey="List" inherits="HybridScrollFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="$parentListInset" x="3" y="-36"/>
+          <Anchor point="BOTTOMRIGHT" relativeTo="$parentListInset" x="-2" y="5"/>
+        </Anchors>
+        <Frames>
+          <Slider name="$parentScrollBar" inherits="HybridScrollBarTrimTemplate" parentKey="scrollBar">
+            <Anchors>
+              <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="4" y="20"/>
+              <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="4" y="11"/>
+            </Anchors>
+            <Scripts>
+              <OnLoad>
+                self.trackBG:Show();
+                self.trackBG:SetVertexColor(0, 0, 0, 0.75);
+              </OnLoad>
+            </Scripts>
+          </Slider>
+        </Frames>
+      </ScrollFrame>
+
+      <Frame parentKey="PetModel" name="$parentCard" useParentLevel="true" inherits="InsetFrameTemplate">
+        <Size x="411" y="520"/>
+        <Anchors>
+          <Anchor point="TOPRIGHT" x="-6" y="-60" />
+        </Anchors>
+
+        <Frames>
+          <Frame parentKey="ShadowOverlay" inherits="ShadowOverlayTemplate" useParentLevel="true" setAllPoints="true"/>
+
+          <PlayerModel parentKey="model" name="$parentModel" inherits="ModelWithZoomTemplate" useParentLevel="true">
+            <Anchors>
+              <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="0" y="-160"/>
+              <Anchor point="BOTTOMRIGHT" relativeKey="$parent" x="0" y="0"/>
+            </Anchors>
+          </PlayerModel>
+        </Frames>
+
+        <Layers>
+          <Layer level="BACKGROUND">
+            <Texture name="$parentBG" file="Interface\PetBattles\MountJournal-BG">
+              <TexCoords left="0" right="0.78515625" top="0" bottom="1"/>
+            </Texture>
+          </Layer>
+        </Layers>
+      </Frame>
+    </Frames>
+  </Frame>
+</Ui>
