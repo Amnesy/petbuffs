@@ -54,5 +54,5 @@ end
 PetBuffs.Pet.FilterFunctions = { }
 
 PetBuffs.Pet.OrderFunctions = {
-    name = PetBuffs.Pet.CompareByName
+    [PBC.NAME_ORDER] = PetBuffs.Pet.CompareByName
 }

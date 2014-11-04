@@ -2,8 +2,6 @@
 -- AceAddon init
 -----------------------------------------------------------------
 
-ADDON_NAME = 'PetBuffs'
-
 local PetBuffs = LibStub('AceAddon-3.0'):NewAddon(ADDON_NAME, 'AceConsole-3.0')
 _G.PetBuffs = PetBuffs
 
