@@ -1,4 +1,10 @@
 -----------------------------------------------------------------
+-- Libraries
+-----------------------------------------------------------------
+
+local L = LibStub('AceLocale-3.0'):GetLocale(ADDON_NAME)
+
+-----------------------------------------------------------------
 -- Drop down menu
 -----------------------------------------------------------------
 
@@ -11,7 +17,7 @@ function PetBuffsJournalFilterDropDown_Initialize(self, level)
     info.keepShownOnClick = true
 
     if level == 1 then
-        info.text = 'Non-exotic'
+        info.text = L['FILTER_' .. PBC.NON_EXOTIC_FILTER]
         info.func = function(_, _, _, value)
             PetBuffsJournal:SetFilter(PBC.NON_EXOTIC_FILTER, value)
         end
@@ -21,7 +27,7 @@ function PetBuffsJournalFilterDropDown_Initialize(self, level)
 
         info.disabled = nil
 
-        info.text = 'Exotic'
+        info.text = L['FILTER_' .. PBC.EXOTIC_FILTER]
         info.func = function(_, _, _, value)
             PetBuffsJournal:SetFilter(PBC.EXOTIC_FILTER, value)
         end
@@ -35,7 +41,7 @@ function PetBuffsJournalFilterDropDown_Initialize(self, level)
         info.hasArrow = true
         info.notCheckable = true
 
-        info.text = 'Buffs'
+        info.text = L['BUFFS']
         info.value = 1
         UIDropDownMenu_AddButton(info, level)
 
@@ -69,7 +75,7 @@ function PetBuffsJournalFilterDropDown_Initialize(self, level)
 
             info.notCheckable = false
             for i = 1, #PBC.BUFF_FILTERS do
-                info.text = PBC.BUFF_FILTERS[i]
+                info.text = L['FILTER_' .. PBC.BUFF_FILTERS[i]]
                 info.func = function(_, _, _, value)
                     PetBuffsJournal:SetFilter(PBC.BUFF_FILTERS[i], value)
                 end
