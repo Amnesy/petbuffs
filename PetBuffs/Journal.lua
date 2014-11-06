@@ -21,6 +21,7 @@ function PetBuffsJournal:Startup()
     self.SearchBox:SetScript('OnTextChanged', self.Search)
 
     self.filters = {
+        [PBC.NAME_FILTER] = '',
         [PBC.NON_EXOTIC_FILTER] = true,
         [PBC.EXOTIC_FILTER] = true
     }
@@ -41,16 +42,18 @@ function PetBuffsJournal:SetPet(pet)
 end
 
 function PetBuffsJournal:Search()
-    -- Addon.Sets.TamerSearch = self:GetText()
-    -- self.Instructions:SetShown(self:GetText() == '')
-    self:GetParent().List:update()
+    if self:GetText() ~= PetBuffsJournal:GetFilter(PBC.NAME_FILTER) then
+        PetBuffsJournal:SetFilter(PBC.NAME_FILTER, self:GetText())
+        self.Instructions:SetShown(self:GetText() == '')
+        self:GetParent().List:update()
+    end
 end
 
 function PetBuffsJournal:SetFilter(filter, enabled)
     self.filters[filter] = enabled
 end
 
-function PetBuffsJournal:IsFilterEnabled(filter)
+function PetBuffsJournal:GetFilter(filter)
     return self.filters[filter]
 end
 

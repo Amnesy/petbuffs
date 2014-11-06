@@ -22,7 +22,7 @@ function PetBuffsJournalFilterDropDown_Initialize(self, level)
             PetBuffsJournal:SetFilter(PBC.NON_EXOTIC_FILTER, value)
             PetBuffsJournal.List:update()
         end
-        info.checked = function() return PetBuffsJournal:IsFilterEnabled(PBC.NON_EXOTIC_FILTER) end
+        info.checked = function() return PetBuffsJournal:GetFilter(PBC.NON_EXOTIC_FILTER) end
         info.isNotRadio = true
         UIDropDownMenu_AddButton(info, level)
 
@@ -33,7 +33,7 @@ function PetBuffsJournalFilterDropDown_Initialize(self, level)
             PetBuffsJournal:SetFilter(PBC.EXOTIC_FILTER, value)
             PetBuffsJournal.List:update()
         end
-        info.checked = function() return PetBuffsJournal:IsFilterEnabled(PBC.EXOTIC_FILTER) end
+        info.checked = function() return PetBuffsJournal:GetFilter(PBC.EXOTIC_FILTER) end
         info.isNotRadio = true
         UIDropDownMenu_AddButton(info, level)
 
@@ -84,7 +84,7 @@ function PetBuffsJournalFilterDropDown_Initialize(self, level)
                     PetBuffsJournal:SetFilter(PBC.BUFF_FILTERS[i], value)
                 end
                 PetBuffsJournal.List:update()
-                info.checked = function() return PetBuffsJournal:IsFilterEnabled(PBC.BUFF_FILTERS[i]) end
+                info.checked = function() return PetBuffsJournal:GetFilter(PBC.BUFF_FILTERS[i]) end
                 UIDropDownMenu_AddButton(info, level)
             end
         elseif UIDROPDOWNMENU_MENU_VALUE == 2 then

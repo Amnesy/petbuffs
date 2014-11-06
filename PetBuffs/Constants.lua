@@ -5,6 +5,8 @@
 ADDON_NAME = 'PetBuffs'
 
 PBC = {
+    NAME_FILTER = 'NAME',
+
     NON_EXOTIC_FILTER = 'NON_EXOTIC',
     EXOTIC_FILTER = 'EXOTIC',
 
