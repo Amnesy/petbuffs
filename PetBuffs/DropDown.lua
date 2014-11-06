@@ -20,6 +20,7 @@ function PetBuffsJournalFilterDropDown_Initialize(self, level)
         info.text = L['FILTER_' .. PBC.NON_EXOTIC_FILTER]
         info.func = function(_, _, _, value)
             PetBuffsJournal:SetFilter(PBC.NON_EXOTIC_FILTER, value)
+            PetBuffsJournal.List:update()
         end
         info.checked = function() return PetBuffsJournal:IsFilterEnabled(PBC.NON_EXOTIC_FILTER) end
         info.isNotRadio = true
@@ -30,6 +31,7 @@ function PetBuffsJournalFilterDropDown_Initialize(self, level)
         info.text = L['FILTER_' .. PBC.EXOTIC_FILTER]
         info.func = function(_, _, _, value)
             PetBuffsJournal:SetFilter(PBC.EXOTIC_FILTER, value)
+            PetBuffsJournal.List:update()
         end
         info.checked = function() return PetBuffsJournal:IsFilterEnabled(PBC.EXOTIC_FILTER) end
         info.isNotRadio = true
@@ -60,6 +62,7 @@ function PetBuffsJournalFilterDropDown_Initialize(self, level)
                 for i = 1, #PBC.BUFF_FILTERS do
                     PetBuffsJournal:SetFilter(PBC.BUFF_FILTERS[i], true)
                 end
+                PetBuffsJournal.List:update()
                 UIDropDownMenu_Refresh(PetBuffsJournalFilterDropDown, 1, 2)
             end
             UIDropDownMenu_AddButton(info, level)
@@ -69,6 +72,7 @@ function PetBuffsJournalFilterDropDown_Initialize(self, level)
                 for i = 1, #PBC.BUFF_FILTERS do
                     PetBuffsJournal:SetFilter(PBC.BUFF_FILTERS[i], false)
                 end
+                PetBuffsJournal.List:update()
                 UIDropDownMenu_Refresh(PetBuffsJournalFilterDropDown, 1, 2)
             end
             UIDropDownMenu_AddButton(info, level)
@@ -79,6 +83,7 @@ function PetBuffsJournalFilterDropDown_Initialize(self, level)
                 info.func = function(_, _, _, value)
                     PetBuffsJournal:SetFilter(PBC.BUFF_FILTERS[i], value)
                 end
+                PetBuffsJournal.List:update()
                 info.checked = function() return PetBuffsJournal:IsFilterEnabled(PBC.BUFF_FILTERS[i]) end
                 UIDropDownMenu_AddButton(info, level)
             end
@@ -91,6 +96,7 @@ function PetBuffsJournalFilterDropDown_Initialize(self, level)
             info.text = NAME
             info.func = function()
                 PetBuffsJournal:SetOrder(PBC.NAME_ORDER)
+                PetBuffsJournal.List:update()
             end
             info.checked = function() return PetBuffsJournal:GetOrder() == PBC.NAME_ORDER end
             UIDropDownMenu_AddButton(info, level)

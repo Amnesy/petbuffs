@@ -29,7 +29,7 @@ function PetBuffsJournal:Startup()
     end
     self.order = PBC.NAME_ORDER
 
-    local pets = PetBuffs.Pet.GetFilteredSortedList(nil, self.order)
+    local pets = PetBuffs.Pet.GetFilteredSortedList(self.filters, self.order)
     self:SetPet(pets[1])
 end
 
@@ -66,7 +66,7 @@ function PetBuffsJournal.List:update()
     local self = PetBuffsJournal.List
     local off = HybridScrollFrame_GetOffset(self)
 
-    local pets = PetBuffs.Pet.GetFilteredSortedList(nil, PetBuffsJournal.order)
+    local pets = PetBuffs.Pet.GetFilteredSortedList(PetBuffsJournal.filters, PetBuffsJournal.order)
 
     for i, button in ipairs(self.buttons) do
         local pet = pets[i + off]
