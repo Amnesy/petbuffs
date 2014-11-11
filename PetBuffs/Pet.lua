@@ -2,15 +2,24 @@
 -- Pet module
 -----------------------------------------------------------------
 
+function table.contains(table, element)
+    for _, value in pairs(table) do
+        if value == element then
+            return true
+        end
+    end
+    return false
+end
+
 PetBuffs.Pet = PetBuffs:NewModule('Pet')
 PetBuffs.Pet.__index = PetBuffs.Pet
 
 function PetBuffs.Pet.GetFilteredSortedList(filters, order)
-    PetBuffs:Print(filters[PBC.NAME_FILTER])
     local pets = {}
     for _, pet in pairs(PetBuffs.Pets) do
         if PetBuffs.Pet.FilterName(pet, filters)
-            and PetBuffs.Pet.FilterExoticism(pet, filters) then
+            and PetBuffs.Pet.FilterExoticism(pet, filters)
+            and PetBuffs.Pet.FilterBuffs(pet, filters) then
             tinsert(pets, pet)
         end
     end
@@ -28,6 +37,17 @@ end
 function PetBuffs.Pet.FilterExoticism(pet, filters)
     return filters[PBC.NON_EXOTIC_FILTER] and not pet.exotic
         or filters[PBC.EXOTIC_FILTER] and pet.exotic
+end
+
+function PetBuffs.Pet.FilterBuffs(pet, filters)
+    for filter, enabled in pairs(filters) do
+        if table.contains(PBC.BUFF_FILTERS, filter) then
+            if enabled and table.contains(pet.buffs, filter) then
+                return true
+            end
+        end
+    end
+    return false
 end
 
 function PetBuffs.Pet.CompareByName(pet1, pet2)
