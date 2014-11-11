@@ -97,10 +97,10 @@ function PetBuffsJournal:Update()
 end
 
 function PetBuffsJournal.PetModel:Display(pet)
-    self.model:SetDisplayInfo(pet.model)
     self.model:SetCamDistanceScale(pet.distance)
     self.model.rotation = pet.rotation
     self.model:SetRotation(pet.rotation)
+    self.model:SetDisplayInfo(pet.model)
 end
 
 -----------------------------------------------------------------

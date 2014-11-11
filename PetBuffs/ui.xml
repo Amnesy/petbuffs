@@ -92,7 +92,6 @@
             <Scripts>
               <OnLoad>
                 Model_OnLoad(self)
-                self:SetCamDistanceScale(1.3)
                 self.rotation = -.9
                 self:SetRotation(-.9)
               </OnLoad>
