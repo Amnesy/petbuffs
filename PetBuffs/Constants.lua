@@ -5,6 +5,7 @@
 ADDON_NAME = 'PetBuffs'
 
 PBC = {
+    BUFF_NONE = 'BUFF_NONE',
     BUFF_STATS = 'BUFF_STATS',
     BUFF_STAM = 'BUFF_STAM',
     BUFF_HASTE = 'BUFF_HASTE',
@@ -27,6 +28,7 @@ PBC = {
 }
 
 PBC.BUFF_FILTERS = {
+    PBC.BUFF_NONE,
     PBC.BUFF_STATS,
     PBC.BUFF_STAM,
     PBC.BUFF_HASTE,

@@ -7,6 +7,8 @@ L['BUFFS'] = 'Buffs'
 
 L['FILTER_NON_EXOTIC'] = 'Non-exotic'
 L['FILTER_EXOTIC'] = 'Exotic'
+
+L['FILTER_BUFF_NONE'] = 'None'
 L['FILTER_BUFF_STATS'] = 'Stats'
 L['FILTER_BUFF_STAM'] = 'Stamina'
 L['FILTER_BUFF_AP'] = 'Attack Power'
