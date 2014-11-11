@@ -82,8 +82,8 @@ function PetBuffsJournalFilterDropDown_Initialize(self, level)
                 info.text = L['FILTER_' .. PBC.BUFF_FILTERS[i]]
                 info.func = function(_, _, _, value)
                     PetBuffsJournal:SetFilter(PBC.BUFF_FILTERS[i], value)
+                    PetBuffsJournal.List:update()
                 end
-                PetBuffsJournal.List:update()
                 info.checked = function() return PetBuffsJournal:GetFilter(PBC.BUFF_FILTERS[i]) end
                 UIDropDownMenu_AddButton(info, level)
             end
